@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Upload</title>
+
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+</head>
+
+<body>
+
+<div class="card">
+    <img src="{% static 'images/logo.png' %}" class="logo" alt="Company Logo">
+
+    <h1>Resume Upload</h1>
+    <p>Drag and drop your resume or click to browse (PDF only)</p>
+
+    <form id="uploadForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="drop-zone" id="dropZone">
+            <input type="file" name="resume" id="fileInput" accept=".pdf" required>
+            <span id="fileText">Drop PDF here or click to upload</span>
+        </div>
+
+        <button type="submit" id="uploadBtn">Upload Resume</button>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="success" id="successMessage">
+            ✔ Resume uploaded successfully
+        </div>
+    </form>
+</div>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const fileText = document.getElementById("fileText");
+const form = document.getElementById("uploadForm");
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const successMessage = document.getElementById("successMessage");
+const uploadBtn = document.getElementById("uploadBtn");
+
+dropZone.addEventListener("click", () => fileInput.click());
+
+dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropZone.classList.remove("dragover");
+    fileInput.files = e.dataTransfer.files;
+    fileText.textContent = fileInput.files[0].name;
+});
+
+fileInput.addEventListener("change", () => {
+    fileText.textContent = fileInput.files[0].name;
+});
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const xhr = new XMLHttpRequest();
+
+    progressContainer.style.display = "block";
+    uploadBtn.disabled = true;
+
+    xhr.upload.addEventListener("progress", (e) => {
+        if (e.lengthComputable) {
+            const percent = (e.loaded / e.total) * 100;
+            progressBar.style.width = percent + "%";
+        }
+    });
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            successMessage.style.display = "block";
+            progressBar.style.width = "100%";
+        }
+    };
+
+    xhr.open("POST", "");
+    xhr.send(formData);
+});
+</script>
+
+</body>
+</html>
