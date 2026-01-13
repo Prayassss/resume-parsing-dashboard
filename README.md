@@ -1,4 +1,3 @@
-```markdown
 # Resume Parsing Dashboard
 
 A Django-based web application that allows candidates to upload resume PDFs and enables administrators to review, search, and manage automatically parsed candidate information through a secure dashboard.
