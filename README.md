@@ -132,6 +132,13 @@ python manage.py runserver
 
 ---
 
+## 📸 Screenshots
+![Resume Upload Page](screenshots/upload_page.png)
+![Upload Success](screenshots/upload_success.png)
+![Candidate Detail](screenshots/candidate_detail.png)
+
+---
+
 ## 🧩 Future Enhancements
 
 * Skill-based candidate ranking
