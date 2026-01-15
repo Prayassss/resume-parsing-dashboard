@@ -11,3 +11,17 @@ class Candidate(models.Model):
 
     def __str__(self):
         return self.full_name or "Unnamed Candidate"
+    
+class Project(models.Model):
+    candidate = models.ForeignKey(
+        "Candidate",
+        on_delete=models.CASCADE,
+        related_name="projects"
+    )
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    technologies = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.title
+

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from candidates.models import Candidate
-from candidates.parser import parse_resume
+from candidates.parser import parse_resume, extract_projects
+from candidates.models import Candidate, Project
+
 
 def upload_resume(request):
     if request.method == "POST":
@@ -16,6 +17,17 @@ def upload_resume(request):
         candidate.phone = parsed.get("phone")
         candidate.skills = parsed.get("skills", "")
         candidate.save()
+
+        resume_text = parsed.get("text", "")
+        projects = extract_projects(resume_text)
+
+        for project in projects:
+            Project.objects.create(
+                candidate=candidate,
+                title=project["title"][:255],
+                description=project["description"].strip(),
+                technologies=project.get("technologies", ""),
+            )
 
         return redirect("upload")
 
