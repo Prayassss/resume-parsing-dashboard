@@ -2,27 +2,19 @@
 import os
 import sys
 
-
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
     try:
-        import django
         from django.core.management import execute_from_command_line
-        django.setup()
+        from django.contrib.auth import get_user_model
     except ImportError as exc:
         raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable?"
+            "Couldn't import Django. Are you sure it's installed?"
         ) from exc
 
-    # ✅ RUN MIGRATIONS AUTOMATICALLY ON RENDER
-    if os.environ.get("RENDER"):
-        execute_from_command_line(["manage.py", "migrate", "--noinput"])
-
-        # ✅ AUTO-CREATE SUPERUSER (FREE TIER)
-        from django.contrib.auth import get_user_model
-
+    # Auto-create superuser ONLY on Render
+    if os.environ.get("RENDER") == "true":
         User = get_user_model()
         username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
         email = os.environ.get("DJANGO_SUPERUSER_EMAIL")
@@ -32,7 +24,6 @@ def main():
             User.objects.create_superuser(username, email, password)
 
     execute_from_command_line(sys.argv)
-
 
 if __name__ == "__main__":
     main()
