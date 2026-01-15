@@ -154,3 +154,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 TEMPLATES[0]["DIRS"] = [BASE_DIR / "templates"]
 
+import os
+
+ALLOWED_HOSTS = ["*"]
