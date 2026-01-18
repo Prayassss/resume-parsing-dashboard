@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -157,3 +158,56 @@ TEMPLATES[0]["DIRS"] = [BASE_DIR / "templates"]
 import os
 
 ALLOWED_HOSTS = ["*"]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Resume Parsing Dashboard",
+    "site_header": "Resume Parsing Dashboard",
+    "site_brand": "HireHub",
+    "site_logo": "images/logo.png",
+    "login_logo": "images/logo.png",
+    "site_logo_classes": "img-circle",
+    "welcome_sign": "Welcome to HireHub Admin",
+    "copyright": "HireHub",
+
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
+    ],
+
+    "icons": {
+        "candidates.Candidate": "fas fa-user-tie",
+        "auth.User": "fas fa-user-shield",
+        "auth.Group": "fas fa-users",
+    },
+
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    "related_modal_active": True,
+}
+
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+    "dark_mode_theme": "darkly",
+
+    "navbar": "navbar-dark bg-dark",
+    "accent": "accent-primary",
+
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+
+    "sidebar_fixed": True,
+    "sidebar_collapsed": False,
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+
+    "brand_small_text": False,
+    "footer_small_text": False,
+}
+

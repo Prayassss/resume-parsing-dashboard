@@ -17,3 +17,8 @@ class CandidateAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ("title", "candidate")
+
+from django.contrib.auth.models import Group
+from django.contrib import admin
+
+admin.site.unregister(Group)
