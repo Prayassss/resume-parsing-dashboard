@@ -67,7 +67,7 @@ resume-parsing-dashboard/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/resume-parsing-dashboard.git
+git clone https://github.com/Prayassss/resume-parsing-dashboard
 cd resume-parsing-dashboard
 ````
 
