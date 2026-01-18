@@ -134,7 +134,7 @@ python manage.py runserver
 ![Resume Upload Page](screenshots/upload_page.png)
 ![Upload Success](screenshots/upload_success.png)
 ![Admin Dashboard](screenshots/admin_dashboard.png)
-![Candidate Detail](screenshots/candidate_detail1.png)
+![Candidate Detail](screenshots/candidate_info.png)
 ![Candidate Projects](screenshots/candidate_projects.png)
 
 ---
