@@ -1,6 +1,6 @@
 # Resume Parsing Dashboard
 
-A Django-based web application that allows candidates to upload resume PDFs and enables administrators to review, search, and manage automatically parsed candidate information through a secure dashboard.
+A lightweight Applicant Tracking System (ATS) that automatically parses resumes and provides a clean admin dashboard for candidate review.
 
 This project demonstrates real-world backend development practices including file handling, PDF parsing, structured data extraction, and clean UI integration.
 
@@ -16,16 +16,14 @@ This project demonstrates real-world backend development practices including fil
 - Company branding with logo and favicon
 - PDF-only upload validation
 
-### Admin Dashboard
+### Admin Dashboard Capabilities
+
 - Secure admin authentication
-- View and manage uploaded resumes
-- Automatic extraction of:
-  - Candidate name
-  - Email address
-  - Phone number
-  - Technical skills
-- Search and filter candidates by name, email, or skills
+- List and detail views for candidates
+- Auto-parsed resume data displayed per candidate
+- Skill-based search and filtering
 - Resume file preview and download
+- Clean, modern Django Admin UI
 
 ### Backend Capabilities
 - Django ORM for database management
@@ -135,7 +133,9 @@ python manage.py runserver
 ## 📸 Screenshots
 ![Resume Upload Page](screenshots/upload_page.png)
 ![Upload Success](screenshots/upload_success.png)
-![Candidate Detail](screenshots/candidate_detail.png)
+![Admin Dashboard](screenshots/admin_dashboard.png)
+![Candidate Detail](screenshots/candidate_detail1.png)
+![Candidate Projects](screenshots/candidate_projects.png)
 
 ---
 
